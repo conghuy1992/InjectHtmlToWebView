@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 "<p>Hello, Android</p>" +
                 "<p>Hello, I am <span id='name'></span></p>" +
                 "<p id='demo'> </p>" +
+                "<div class='change-value'>Change value here</div>" +
                 "</body>" +
                 "</html>", "text/html", "UTF-8");
         ((Button) findViewById(R.id.btnInject)).setOnClickListener(new View.OnClickListener() {
@@ -64,6 +65,19 @@ public class MainActivity extends AppCompatActivity {
                 webView.loadUrl(javascript);
             }
         });
+        ((Button) findViewById(R.id.btnInsert)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String javascript = "javascript:(function() { "
+                        + "var element = document.createElement('div');"
+                        + "element.textContent = 'Vui lòng chọn đầy đủ thuộc tính của sản phẩm (màu sắc, kích thước,..), tiếp đó click vào nút \"Đặt hàng\"';"
+                        +"document.getElementsByClassName('change-value')[0].insertBefore(element,null)"
+                        + "})()";
+                webView.loadUrl(javascript);
+            }
+        });
+
+
     }
 
     @Override
